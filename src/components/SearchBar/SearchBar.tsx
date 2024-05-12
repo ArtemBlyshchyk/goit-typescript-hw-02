@@ -3,12 +3,14 @@ const notify = () => toast.error("Enter text for search photos!");
 import { IoIosSearch } from "react-icons/io";
 
 import css from "./SearchBar.module.css";
+import { FormEvent } from "react";
 
 const SearchBar = ({ onSubmit }) => {
-  const handleSubmit = (evt) => {
+  const handleSubmit = (evt: FormEvent <HTMLFormElement>): void => {
     evt.preventDefault();
-    const form = evt.target;
-    const { searchPhotos } = form.elements;
+    const form = evt.target as HTMLFormElement;
+    const { searchPhotos }: any = form.elements;
+
     if (searchPhotos.value.trim() === "") {
       notify();
     } else {

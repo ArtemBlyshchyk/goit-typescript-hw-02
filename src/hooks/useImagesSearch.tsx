@@ -1,18 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import { requestPhotos } from "../api/api";
+import { ImageObj } from "./useImagesSearch.types";
 
 const useImagesSearch = () => {
-  const [results, setResults] = useState(null);
-  const [query, setQuery] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [isLoadMore, setIsLoadMore] = useState(false);
-  const [page, setPage] = useState(1);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null); // State of chosen photo
-  const [showBtn, setShowBtn] = useState(false);
+  const [results, setResults] = useState<ImageObj[] | null>(null);
+  const [query, setQuery] = useState<string>(""); // input
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
+  const [isLoadMore, setIsLoadMore] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(1);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [selectedImage, setSelectedImage] = useState<ImageObj | null>(null); // State of chosen photo
+  const [showBtn, setShowBtn] = useState<boolean>(false);
   //Auto scroll
-  const listRef = useRef(null);
+  const listRef = useRef<HTMLInputElement>(null);
   const scrollHeight = useRef(0);
   useEffect(() => {
     if (!listRef.current) return;
@@ -22,15 +23,25 @@ const useImagesSearch = () => {
 
   useEffect(() => {
     if (query.length === 0) return;
-    async function fetchPhotosByQuery() {
+    async function fetchPhotosByQuery(): Promise<void> {
       try {
         setIsLoading(true);
         const data = await requestPhotos(query, page);
+
+        //Remove console.log
+        console.log('data: ', data);
+
         setShowBtn(data.total_pages > page);
         if (results === null) {
           setResults(data.results);
         } else {
-          setResults((prevResults) => [...prevResults, ...data.results]);
+          setResults((prevResults) => {
+            if (prevResults === null) {
+              return data.results;
+            } else{
+              return [...prevResults, ...data.results]
+            }
+          } );
         }
         setIsLoadMore(true);
       } catch {
@@ -42,7 +53,7 @@ const useImagesSearch = () => {
     fetchPhotosByQuery();
   }, [query, page]);
 
-  const onSetSearchQuery = (searchPhotos) => {
+  const onSetSearchQuery = (searchPhotos: string): void => {
     if (searchPhotos === query) {
       return;
     } else {
@@ -52,18 +63,18 @@ const useImagesSearch = () => {
     setResults([]);
   };
 
-  const onSetMorePhotos = () => {
-    setPage((prevPage) => prevPage + 1);
+  const onSetMorePhotos = (): void => {
+    setPage((prevPage: number) => prevPage + 1);
   };
 
   //Modal React options
-  const openModal = (image) => {
+  const openModal = (image: any): void => {
     // Pass this function like a props to the ImageGallery component
     setSelectedImage(image);
     setIsModalOpen(true);
   };
 
-  const closeModal = () => {
+  const closeModal = (): void => {
     setIsModalOpen(false);
   };
 
