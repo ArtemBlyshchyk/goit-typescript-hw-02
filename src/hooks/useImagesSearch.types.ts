@@ -9,4 +9,9 @@ export interface ImageObj {
         thumb: string,
     },
     alt_description: string,
+    likes: number,
+    user: {
+        name: string,
+    }
+    
 }

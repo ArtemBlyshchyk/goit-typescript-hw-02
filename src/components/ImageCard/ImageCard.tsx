@@ -1,4 +1,7 @@
-const ImageCard = ({ photo, openModal }) => {
+import { FC } from "react";
+import { ImageCardProps } from "./ImageCard.types";
+
+const ImageCard: FC<ImageCardProps> = ({ photo, openModal }) => {
   return (
     <div>
       <img

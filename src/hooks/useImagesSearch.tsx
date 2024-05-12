@@ -28,9 +28,6 @@ const useImagesSearch = () => {
         setIsLoading(true);
         const data = await requestPhotos(query, page);
 
-        //Remove console.log
-        console.log('data: ', data);
-
         setShowBtn(data.total_pages > page);
         if (results === null) {
           setResults(data.results);
@@ -68,7 +65,7 @@ const useImagesSearch = () => {
   };
 
   //Modal React options
-  const openModal = (image: any): void => {
+  const openModal = (image: ImageObj): void => {
     // Pass this function like a props to the ImageGallery component
     setSelectedImage(image);
     setIsModalOpen(true);

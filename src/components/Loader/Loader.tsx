@@ -1,7 +1,8 @@
 import { MagnifyingGlass } from "react-loader-spinner";
 import css from "./Loader.module.css";
+import { FC } from "react";
 
-const Loader = () => {
+const Loader: FC = () => {
   return (
     <div className={css.loaderContainer}>
       <MagnifyingGlass

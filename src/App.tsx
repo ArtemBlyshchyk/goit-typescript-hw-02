@@ -1,7 +1,4 @@
-// import { useRef, useState } from "react";
 import SearchBar from "./components/SearchBar/SearchBar";
-// import { useEffect } from "react";
-// import { requestPhotos } from "./api/api";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import Loader from "./components/Loader/Loader";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
@@ -38,7 +35,7 @@ function App() {
       )}
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
-      {isLoadMore && results.length !== 0 && showBtn && (
+      {isLoadMore && results && results.length !== 0 && showBtn && (
         <LoadMoreBtn onSetMorePhotos={onSetMorePhotos} />
       )}
       {selectedImage && (

@@ -1,10 +1,12 @@
-import { forwardRef } from "react";
+import { FC, Ref, forwardRef } from "react";
 import ImageCard from "../ImageCard/ImageCard";
 import css from "./ImageGallery.module.css";
+import { ImageGalleryProps } from "./ImageGallery.types";
 
-const ImageGallery = forwardRef(function ImageGallery(
+//React.FC<ImageGalleryProps> One from variant
+const ImageGallery: FC<ImageGalleryProps> = forwardRef(function ImageGallery(
   { results, openModal },
-  ref
+  ref: Ref<HTMLUListElement>
 ) {
   return (
     <ul className={css.listContainer} ref={ref}>

@@ -1,5 +1,8 @@
+import { FC } from "react";
 import css from "./LoadMoreBtn.module.css";
-const LoadMoreBtn = ({ onSetMorePhotos }) => {
+import { LoadMoreBtnProps } from "./LoadMoreBtn.types";
+
+const LoadMoreBtn: FC<LoadMoreBtnProps> = ({ onSetMorePhotos }) => {
   return (
     <div className={css.buttonContainer}>
       <button onClick={onSetMorePhotos}>Load more</button>

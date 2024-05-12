@@ -1,7 +1,16 @@
 import ReactModal from "react-modal";
 import css from "./ImageModal.module.css";
+import { ImageObj } from "../../hooks/useImagesSearch.types";
+import { FC } from "react";
 
-const ImageModal = ({ isOpen, onClose, imageUrl, imgData }) => {
+interface ImageModalProps {
+  isOpen: boolean,
+  onClose: () => void,
+  imageUrl: string | undefined,
+  imgData: ImageObj | null,
+}
+
+const ImageModal: FC<ImageModalProps> = ({ isOpen, onClose, imageUrl, imgData }) => {
   return (
     <ReactModal
       isOpen={isOpen}
@@ -17,10 +26,10 @@ const ImageModal = ({ isOpen, onClose, imageUrl, imgData }) => {
       />
       <div className={css.imgInfo}>
         <p>
-          <b>Likes:</b> {imgData.likes}
+          <b>Likes:</b> {imgData && imgData.likes}
         </p>
         <p>
-          <b>User name:</b> {imgData.user.name}
+          <b>User name:</b> {imgData &&imgData.user.name}
         </p>
       </div>
     </ReactModal>
