@@ -13,7 +13,7 @@ const useImagesSearch = () => {
   const [selectedImage, setSelectedImage] = useState<ImageObj | null>(null); // State of chosen photo
   const [showBtn, setShowBtn] = useState<boolean>(false);
   //Auto scroll
-  const listRef = useRef<HTMLInputElement>(null);
+  const listRef = useRef<HTMLUListElement>(null);
   const scrollHeight = useRef(0);
   useEffect(() => {
     if (!listRef.current) return;
