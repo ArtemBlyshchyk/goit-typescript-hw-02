@@ -11,7 +11,7 @@ const SearchBar: FC<SearchBarProps> = ({ onSubmit }) => {
   const handleSubmit = (evt: FormEvent <HTMLFormElement>): void => {
     evt.preventDefault();
     const form = evt.target as HTMLFormElement;
-    const { searchPhotos }:any = form.elements;
+    const searchPhotos = form.elements.namedItem('searchPhotos') as HTMLInputElement;
 
     if (searchPhotos.value.trim() === "") {
       notify();
