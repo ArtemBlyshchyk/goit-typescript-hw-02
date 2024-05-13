@@ -1,12 +1,16 @@
-import axios from "axios";
+import axios, { AxiosInstance, AxiosResponse } from "axios";
 
-const instance = axios.create({
+// interface requestPhotosInterface {
+
+// }
+
+const instance: AxiosInstance = axios.create({
   baseURL: "https://api.unsplash.com/",
 });
-const accessKey = "yavGcAFrlnMu2OlPo-KVjsSI2RlSDF7PFdxSLkp_G7k";
+const accessKey: string = "yavGcAFrlnMu2OlPo-KVjsSI2RlSDF7PFdxSLkp_G7k";
 
-export const requestPhotos = async (query = "", page = 1) => {
-  const { data } = await instance.get(
+export const requestPhotos = async <T>(query: string = "", page: number = 1): Promise<T> => {
+  const { data }: AxiosResponse<T>  = await instance.get(
     `search/photos/?client_id=${accessKey}&per_page=12&query=${query}&page=${page}`
   );
   return data;

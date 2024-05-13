@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { requestPhotos } from "../api/api";
-import { ImageObj } from "./useImagesSearch.types";
+import { ImageObj, ResponseObj } from "./useImagesSearch.types";
 
 const useImagesSearch = () => {
   const [results, setResults] = useState<ImageObj[] | null>(null);
@@ -26,7 +26,7 @@ const useImagesSearch = () => {
     async function fetchPhotosByQuery(): Promise<void> {
       try {
         setIsLoading(true);
-        const data = await requestPhotos(query, page);
+        const data: ResponseObj = await requestPhotos(query, page);
 
         setShowBtn(data.total_pages > page);
         if (results === null) {

@@ -12,6 +12,10 @@ export interface ImageObj {
     likes: number,
     user: {
         name: string,
-    }
-    
+    } 
+}
+
+export interface ResponseObj {
+    total_pages: number,
+    results: [],
 }
