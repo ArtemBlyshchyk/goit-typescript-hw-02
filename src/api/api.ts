@@ -1,8 +1,5 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 
-// interface requestPhotosInterface {
-
-// }
 
 const instance: AxiosInstance = axios.create({
   baseURL: "https://api.unsplash.com/",
